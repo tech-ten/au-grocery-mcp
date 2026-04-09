@@ -1,0 +1,43 @@
+{
+  "name": "@agentsformation/au-grocery-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Australian grocery shopping. Search, compare prices, and build carts across Woolworths and Coles.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "au-grocery-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "grocery",
+    "australia",
+    "woolworths",
+    "coles",
+    "shopping",
+    "ai",
+    "claude",
+    "agentsformation"
+  ],
+  "author": "Tendai Mudavanhu <tendai@agentsform.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tech-ten/au-grocery-mcp"
+  },
+  "homepage": "https://agentsform.ai",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
