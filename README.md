@@ -4,14 +4,7 @@ An MCP server for Australian grocery shopping. Search products, compare prices, 
 
 Built by [Agents Formation](https://agentsform.ai) — AI-native skill integrations for Australian businesses.
 
-## What it does
-
-This MCP server gives any AI assistant (Claude, ChatGPT, Gemini, Cursor, etc.) the ability to:
-
-- **Search products** across Woolworths and Coles
-- **Compare prices** for a shopping list and find the cheapest basket
-- **Get product details** including ingredients, nutrition info, and pricing
-- **Browse categories** to discover products
+> **Read-only server.** Searches and compares products. Does not add to cart, log in, or place orders. See [docs/ROADMAP.md](docs/ROADMAP.md) for the transactional roadmap.
 
 ## Install
 
@@ -80,6 +73,14 @@ User: "Which store is cheaper for milk, bread, eggs, and chicken?"
 
 Returns price at each store, which is cheapest per item, and total savings.
 
+## How it works
+
+Calls publicly available product search APIs at Woolworths and Coles. No authentication required — same APIs that power their websites.
+
+- **Woolworths**: `woolworths.com.au/apis/ui/Search/products` and `woolworths.com.au/apis/ui/product/detail/{stockcode}`
+- **Coles**: `coles.com.au/api/products/v2/search` with fallback endpoints
+- **Transport**: stdio (JSON-RPC 2.0 over stdin/stdout)
+
 ## Development
 
 ```bash
@@ -89,19 +90,21 @@ npm install
 npm run dev
 ```
 
-## How it works
+## Docs
 
-The server calls publicly available product search APIs at Woolworths and Coles. No authentication is required for product search and pricing — the same APIs that power their websites.
+- [ROADMAP.md](docs/ROADMAP.md) — What's next: transactional tools, remote hosting, registry
+- [ADR-001: Read-only first](docs/adr/001-read-only-first.md) — Why this server doesn't buy anything yet
+- [ADR-002: Registry and remote hosting](docs/adr/002-registry-and-remote-hosting.md) — Local vs remote MCP, the business model
 
-- **Woolworths**: `woolworths.com.au/apis/ui/Search/products` and `woolworths.com.au/apis/ui/product/detail/{stockcode}`
-- **Coles**: `coles.com.au/api/products/v2/search` with fallback endpoints
+## MCP Registry
+
+Listed in the [Australian MCP Registry](https://agentsform.ai/registry.html) — JSON API at [`agentsform.ai/api/registry.json`](https://agentsform.ai/api/registry.json)
 
 ## About Agents Formation
 
-We help Australian organisations expose their services as AI-native skill integrations. This grocery MCP server is one example of what's possible when businesses become callable by AI assistants.
-
 - Website: [agentsform.ai](https://agentsform.ai)
-- Product page: [gombwe.com](https://gombwe.com)
+- Product: [gombwe.com](https://gombwe.com)
+- MCP Registry: [agentsform.ai/registry.html](https://agentsform.ai/registry.html)
 - Email: [tendai@agentsform.ai](mailto:tendai@agentsform.ai)
 
 ## License

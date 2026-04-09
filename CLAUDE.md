@@ -4,7 +4,7 @@ Australian grocery MCP server built by Agents Formation.
 
 ## What this is
 
-An MCP (Model Context Protocol) server that lets AI assistants search, compare, and get details on grocery products from Woolworths and Coles — Australia's two largest supermarket chains.
+A read-only MCP server that lets AI assistants search, compare, and get details on grocery products from Woolworths and Coles. Does not buy anything — see `docs/adr/001-read-only-first.md` for why.
 
 ## Architecture
 
@@ -15,6 +15,12 @@ src/
 │   ├── woolworths.ts     # Woolworths API client (search, detail, categories)
 │   └── coles.ts          # Coles API client (search)
 └── tools/                # Reserved for future tool modules
+
+docs/
+├── ROADMAP.md            # Phased plan: read → remote hosting → transactional
+└── adr/
+    ├── 001-read-only-first.md           # Why no buying in v0.1
+    └── 002-registry-and-remote-hosting.md  # Registry vs hosting, business model
 ```
 
 ## Tools exposed
@@ -38,20 +44,15 @@ npm start          # stdio transport (for Claude Desktop, Cursor, etc.)
 npm run dev        # development with tsx
 ```
 
-## Adding to Claude Desktop
+## Key decisions
 
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+- **Read-only**: No cart, checkout, or payment tools. See ADR-001.
+- **Stdio transport**: Runs as subprocess, no network server. Remote HTTP hosting is Phase 2.
+- **Unscoped npm package**: Published as `au-grocery-mcp` (not `@agentsformation/au-grocery-mcp`) because the npm org doesn't exist yet.
 
-```json
-{
-  "mcpServers": {
-    "au-grocery": {
-      "command": "node",
-      "args": ["/path/to/au-grocery-mcp/dist/index.js"]
-    }
-  }
-}
-```
+## Registry
+
+Listed in the Australian MCP Registry at `agentsform.ai/api/registry.json`. The registry is a static JSON file on S3, not a database. See ADR-002.
 
 ## Publishing
 
@@ -59,7 +60,3 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 npm run build
 npm publish --access public
 ```
-
-## Part of Agents Formation
-
-This server is part of the Agents Formation ecosystem — building AI-native skill integrations for Australian businesses. See https://agentsform.ai
