@@ -6,6 +6,10 @@ Built by [Agents Formation](https://agentsform.ai) — AI-native skill integrati
 
 > **Read-only server.** Searches and compares products. Does not add to cart, log in, or place orders. See [docs/ROADMAP.md](docs/ROADMAP.md) for the transactional roadmap.
 
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) 18 or later — download from nodejs.org if you don't have it. This also installs `npm`.
+
 ## Install
 
 ```bash
