@@ -57,6 +57,8 @@ MCP server creators are not compensated. The MCP partners page invites developer
 
 3. **Anthropic actively blocks third-party monetisation.** They discontinued OpenClaw's ability to use Claude subscription credits, forcing $1000-5000/day API billing for agentic workloads. Message: don't try to build a cheaper Claude wrapper.
 
+4. **$20/month paywall on every user.** Managed agents and MCP tools are only available to paying Claude subscribers (Pro/Max/Team/Enterprise). Free Claude users cannot use them at all. This means a customer who just wants to compare grocery prices must first pay Anthropic $20/month for a subscription before they can access our free tool. That's a gatekeeper tax — especially significant for price-sensitive markets like Africa where $20/month is a real barrier.
+
 ### The good news
 
 1. **Anthropic can't write every tool.** They need the community to build domain-specific MCP servers. Australian grocery, Australian flights, Australian energy — Anthropic will never build these. Someone has to, and being first matters.
@@ -68,6 +70,25 @@ MCP server creators are not compensated. The MCP partners page invites developer
 4. **Marketplace listing is free marketing.** Being in Claude's MCP directory puts us in front of every Claude user who searches for Australian grocery tools. Zero customer acquisition cost.
 
 ## Strategic implications
+
+### Managed agents vs self-hosted: the full comparison
+
+| | Anthropic managed agents | Self-hosted (Gombwe / our remote MCP) |
+|---|---|---|
+| **Customer cost** | $20/month minimum (Claude subscription) | Free tier possible, or pay-per-use |
+| **Access** | Paid Claude subscribers only | Anyone — no subscription required |
+| **Free users** | Cannot use MCP tools at all | Can use freely |
+| **Model** | Claude only | Any model (Claude, GPT, Gemini, open source) |
+| **Data location** | US servers (Anthropic infrastructure) | Your choice — AU servers, edge, on-device |
+| **Data sovereignty** | No control — data processed by Anthropic in US | Full control — host where compliance requires |
+| **Vendor lock-in** | Locked to Anthropic/Claude | Model-agnostic, portable |
+| **Tool availability** | Anthropic decides what's listed/allowed | You decide |
+| **Uptime** | Dependent on Anthropic | Dependent on your infrastructure |
+| **Customer relationship** | Anthropic owns it — you never see the user | Direct — you know your customers |
+| **Revenue to tool provider** | $0 | You set your own pricing |
+| **African/emerging markets** | $20/month paywall excludes most users | Accessible at any price point |
+| **Customisation** | Limited to what Anthropic's sandbox supports | Full control over runtime, tools, channels |
+| **Transactional tools** | Subject to Anthropic's policies | Your policies |
 
 ### Don't compete with Anthropic on hosting agents
 
