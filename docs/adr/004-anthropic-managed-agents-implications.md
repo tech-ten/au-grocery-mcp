@@ -22,7 +22,7 @@ MCP servers are the "hands" in this model. They are generic tool interfaces that
 
 ### Managed agents pricing
 
-No separate pricing has been publicly announced for managed agents. The sandbox compute is likely included in existing Claude subscriptions (Pro, Max, Team, Enterprise) — the same way Claude Code background agents run as part of the subscription with no per-hour charge. Anthropic absorbs the sandbox infrastructure cost and recoups it through subscription revenue.
+For Claude subscribers (Pro, Max, Team, Enterprise), sandbox compute is included in the subscription. For API users, sandbox compute is billed at $0.08/hr plus token costs. What remains unclear is the billing model when an enterprise builds a managed agent product and exposes it to their own end users: does the enterprise absorb all session costs, or is there a pass-through billing mechanism? This has not been addressed publicly.
 
 ### Claude Marketplace
 
