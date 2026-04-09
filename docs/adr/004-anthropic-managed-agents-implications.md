@@ -6,7 +6,7 @@
 
 ## Context
 
-Anthropic published [Scaling Managed Agents](https://www.anthropic.com/engineering/managed-agents) describing their hosted agent architecture. They also launched Claude Managed Agents (public beta, April 2026) and the Claude Marketplace. This ADR analyses what these moves mean for our MCP server business.
+Anthropic published [Scaling Managed Agents](https://www.anthropic.com/engineering/managed-agents), an engineering blog post describing the internal architecture behind their hosted agent infrastructure (likely powering Claude Code background agents and similar features). This ADR analyses what this architecture means for our MCP server business.
 
 ## What Anthropic built
 
@@ -22,9 +22,7 @@ MCP servers are the "hands" in this model. They are generic tool interfaces that
 
 ### Managed agents pricing
 
-- **$0.08 per runtime hour** for managed agent compute
-- Plus standard Claude API token costs
-- An agent running 24/7 costs ~$58/month for runtime alone, before tokens
+No separate pricing has been publicly announced for managed agents. The sandbox compute is likely included in existing Claude subscriptions (Pro, Max, Team, Enterprise) — the same way Claude Code background agents run as part of the subscription with no per-hour charge. Anthropic absorbs the sandbox infrastructure cost and recoups it through subscription revenue.
 
 ### Claude Marketplace
 
@@ -38,14 +36,14 @@ MCP servers are the "hands" in this model. They are generic tool interfaces that
 **Anthropic does not pay tool providers.** The economics:
 
 ```
-Customer pays Anthropic  →  Anthropic runs Claude  →  Claude calls MCP tools  →  Tool providers get nothing
-         $$$                     keeps $$$                  routes calls               $0
+Customer subscribes to Claude  →  Anthropic runs Claude + sandbox  →  Claude calls MCP tools  →  Tool providers get nothing
+      (subscription)                 (absorbs infra cost)                 (routes calls)               ($0)
 ```
 
 Revenue comes from:
-- **Token consumption**: Every tool call requires Claude to think (input/output tokens). Anthropic charges for this.
-- **Runtime hours**: Managed agent sandbox time at $0.08/hr
-- **Server-side tools**: Some built-in tools have extra charges (web search: $10/1k searches)
+- **Subscriptions**: Pro, Max, Team, Enterprise plans. Sandbox compute is bundled — customers don't pay extra for managed agent runtime.
+- **Token consumption**: API customers pay per-token. Every tool call requires Claude to think (input/output tokens).
+- **Server-side tools**: Some built-in tools have extra charges (e.g. web search).
 
 MCP server creators are not compensated. The MCP partners page invites developers to submit servers for the directory with no mention of payment, revenue sharing, or compensation.
 
@@ -108,7 +106,7 @@ The read-only MCP server (search, compare) can be free and open source — it's 
 | Google builds Android (OS) | Anthropic builds MCP (protocol) |
 | Google runs Play Store | Anthropic runs Claude Marketplace |
 | App developers build apps for free | Tool developers build MCP servers for free |
-| Google makes money on ads + Play Store cut | Anthropic makes money on tokens + runtime |
+| Google makes money on ads + Play Store cut | Anthropic makes money on subscriptions + API tokens |
 | App developers monetise via in-app purchases | Tool developers monetise via... self-hosted remote versions |
 
 The difference: Google takes 15-30% commission but at least there IS a payment mechanism. Anthropic takes 0% because there's no payment to tool providers at all.
