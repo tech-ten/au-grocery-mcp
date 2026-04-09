@@ -1,5 +1,5 @@
 {
-  "name": "@agentsformation/au-grocery-mcp",
+  "name": "au-grocery-mcp",
   "version": "0.1.0",
   "description": "MCP server for Australian grocery shopping. Search, compare prices, and build carts across Woolworths and Coles.",
   "type": "module",

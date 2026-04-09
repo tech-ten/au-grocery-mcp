@@ -16,7 +16,7 @@ This MCP server gives any AI assistant (Claude, ChatGPT, Gemini, Cursor, etc.) t
 ## Install
 
 ```bash
-npm install -g @agentsformation/au-grocery-mcp
+npm install -g au-grocery-mcp
 ```
 
 ## Usage with Claude Desktop
